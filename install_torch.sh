@@ -9,10 +9,8 @@ if ! command -v nvidia-smi &> /dev/null; then
 fi
 
 # Extract CUDA driver version
-cuda_driver=$(nvidia-smi | grep "CUDA Version" | awk '{print $9}')
-if [ -z "$cuda_driver" ]; then
-    cuda_driver=$(nvidia-smi | grep -oP 'CUDA Version: \K[0-9]+\.[0-9]+')
-fi
+
+cuda_driver=$(nvidia-smi | grep -oP 'CUDA Version: \K[0-9]+\.[0-9]+')
 
 if [ -z "$cuda_driver" ]; then
     echo "Error: Cannot detect CUDA version"
